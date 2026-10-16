@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>COD Career</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="profile-switch" role="tablist" aria-label="Player profile" id="profileSwitch"></div>
+    <h1 class="brand">COD <span>CAREER</span></h1>
+    <div class="mode-switch" aria-label="Game mode">
+      <button class="mode active" data-mode="warzone">Warzone</button>
+      <button class="mode" disabled title="Coming soon">Multiplayer <small>soon</small></button>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab active" data-view="log">Log Match</button>
+    <button class="tab" data-view="history">Match History</button>
+    <button class="tab" data-view="stats">Account Stats</button>
+  </nav>
+
+  <main>
+    <section class="card elo-strip" id="eloStrip"></section>
+
+    <!-- LOG MATCH -->
+    <section class="view active" id="view-log">
+      <div class="card">
+        <div class="card-head">
+          <h2>Coach / Spectator Log</h2>
+          <p class="muted">Tap <b>+</b> for each thing done right, <b>−</b> for each thing done wrong. Notes are optional.</p>
+        </div>
+        <div class="match-meta">
+          <label>Match label <input id="matchLabel" placeholder="e.g. Quads – Urzikstan"></label>
+          <label>Placement <input id="matchPlacement" type="number" min="1" placeholder="#"></label>
+          <label>Kills <input id="matchKills" type="number" min="0" placeholder="0"></label>
+        </div>
+        <div id="skillRows" class="skill-rows"></div>
+
+        <div class="death-block">
+          <div class="row-head">
+            <div>
+              <h3>Reason for final death</h3>
+              <p class="muted">Pick what ended the match, then grade how it was handled.</p>
+            </div>
+            <div class="counter" id="deathCounter"></div>
+          </div>
+          <div class="chips" id="deathChips"></div>
+          <input class="note" id="deathNote" placeholder="Note on the death (optional)">
+        </div>
+
+        <div class="log-footer">
+          <div class="preview" id="livePreview"></div>
+          <div class="actions">
+            <button class="btn ghost" id="resetLog">Clear</button>
+            <button class="btn primary" id="saveMatch">Save match</button>
+          </div>
+        </div>
+      </div>
+      <div id="lastSummary"></div>
+    </section>
+
+    <!-- HISTORY -->
+    <section class="view" id="view-history">
+      <div id="historyList"></div>
+    </section>
+
+    <!-- STATS -->
+    <section class="view" id="view-stats">
+      <div id="statsBody"></div>
+      <div class="card data-tools">
+        <h3>Backup &amp; share</h3>
+        <p class="muted">Data is saved in this browser. Export a file to back it up or send it to your coach; import to load one.</p>
+        <div class="actions">
+          <button class="btn ghost" id="exportBtn">Export data</button>
+          <label class="btn ghost file-btn">Import data<input type="file" id="importFile" accept="application/json"></label>
+          <button class="btn danger" id="resetProfile">Reset this profile</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
